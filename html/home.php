@@ -30,7 +30,7 @@
             <div class="marcalog">
               <h1 id="marca_LogIn"><b>Lecker</b></h1><h1>Restaurante y repostería</h1><h2 style="margin: 0px auto;">Bienvenido</h2>
             </div>
-            <label id="label_correo_login">Correo</label>
+            <label id="label_correo_login">Nombre de Usuario</label>
             <input type="text" name="user" required> 
             <label id="label_contraseña_login">Contraseña</label><br>  
             <input type="password" name="pass" required>
@@ -67,8 +67,8 @@
           <li><a href="#Eventos">Eventos</a></li>
           <li><a href="#contacto">Contacto</a></li>
           <li><a href="#footer">ACERCA DE</a></li>
-              <button onclick="document.getElementById('LogIn').style.display ='block'" id="botonIniciarSesion">Login</button>
-              <a id="btn_registro" href="#registro">Registrarse</a>
+              <button id="botonCerrarSesion">Cerrar Sesion</button>
+              <script>document.getElementById('botonCerrarSesion').onclick = function(){window.location.href = 'controladores/cerrarSesion.php';}</script>
         </ul>
       </nav>
     </div>
@@ -91,7 +91,7 @@
                     echo "<td>".$salon['Precio']."</td>";
                     echo "<td align = 'center'><img src='".$salon['imagen']."' width = 300></td>";
                     echo "<td align = 'center'><form method='GET' action='seleccionFecha.php'>";
-                    echo "<button name='reservarSalon' id='btn_reservar'><a id='enlace_res' href='seleccionFecha.php?salon=".$salon['id']."'>Reservar</a></button>";
+                    echo "<button name='reservarSalon' id='btn_reservar'><a id='enlace_res' href='seleccionFecha.php?salon_id=".$salon['id']."&salon_nombre=".$salon['nombre']."'>Reservar</a></button>";
                     //echo "<input type='submit' name='salon' value='".$salon['id']."'>Reservar</input></form></td>";
                     echo "</tr>";
                   }
@@ -100,9 +100,11 @@
                 {
                   echo "<h1> No hay salones en la base de datos </h1>";
                 }
+              terminarConexion($mysql);
               }
-              else 
+              else{
               echo "<h1> Error de conexion con base de datos </h1>";
+            }
             ?>
         </table>
       </article>

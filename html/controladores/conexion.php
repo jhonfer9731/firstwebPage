@@ -13,4 +13,8 @@ function conexionBaseDatos(){
   }
   return $enlace;
 }
+
+function terminarConexion($enlace){
+    $enlace->close();
+}
 ?>

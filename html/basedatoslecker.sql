@@ -63,8 +63,8 @@ CREATE TABLE `reservassalones` (
 -- Dumping data for table `reservassalones`
 --
 
-INSERT INTO `reservassalones` (`Lugar`, `Dia`, `Mes`, `Año`, `hora`, `id`) VALUES
-('0', '0', '0', '0', '0', 1);
+--INSERT INTO `reservassalones` (`Lugar`, `Dia`, `Mes`, `Año`, `hora`, `id`) VALUES
+--('0', '0', '0', '0', '0', 1);
 
 -- --------------------------------------------------------
 

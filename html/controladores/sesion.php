@@ -10,9 +10,13 @@ function comprobarUsuario(){
       session_start();
       $_SESSION['user'] = $_POST['user'];
       $_SESSION['auth'] = true;
-      header("Location: ../home.php");
+      terminarConexion($mysql);
+      $valor_cookie = "true";
+      setcookie("sesion_abierta",$valor_cookie, time()+360,"/");
+      header("Location: ../home.php?sesionAbierta=true");
     }else{
       echo $consulta." No resultados<br>";
+      terminarConexion($mysql);
       header("Location: ../index.php?error=true");
     }    
   }else{
@@ -41,5 +45,5 @@ function comprobarUsuario(){
 //  }
   
 }
-
 comprobarUsuario();
+?>

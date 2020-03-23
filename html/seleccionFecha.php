@@ -4,6 +4,7 @@
     header("Location: index.php");
   }
   require_once 'controladores/conexion.php';
+  setcookie("salon_elegido", $_GET['salon_nombre'], time()+180,"/");   //La cookie dura 10 segundos desde que entra a la pagina
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,7 @@
             <div class="marcalog">
               <h1 id="marca_LogIn"><b>Lecker</b></h1><h1>Restaurante y repostería</h1><h2 style="margin: 0px auto;">Bienvenido</h2>
             </div>
-            <label id="label_correo_login">Correo</label>
+            <label id="label_correo_login">Nombre de Usuario</label>
             <input type="text" name="user" required> 
             <label id="label_contraseña_login">Contraseña</label><br>  
             <input type="password" name="pass" required>
@@ -67,18 +68,17 @@
           <li><a href="#Eventos">Eventos</a></li>
           <li><a href="#contacto">Contacto</a></li>
           <li><a href="#footer">ACERCA DE</a></li>
-              <button onclick="document.getElementById('LogIn').style.display ='block'" id="botonIniciarSesion">Login</button>
-              <a id="btn_registro" href="#registro">Registrarse</a>
+          <button id="botonCerrarSesion">Cerrar Sesion</button>
+              <script>document.getElementById('botonCerrarSesion').onclick = function(){window.location.href = 'controladores/cerrarSesion.php';}</script>
         </ul>
       </nav>
     </div>
   </header>
-    <h1 class="Titulo1User">Reserva Salon <?php echo $_GET['salon']?></h1>
+    <h1 class="Titulo1User">Reserva Salon <?php echo $_GET['salon_nombre']?></h1>
     <h2 class="Titulo1User">Selecciona una fecha <?php echo $_SESSION['user']?>: </h2>
     <div class="container2">
         <article class="card">
             <form method="POST" action="gen_reserva.php">
-                <input name="lugar" value=<?php echo $_GET['salon']?>>
             <div id="container_fecha">
                 <label>Dia: </label>
                 <select name="dia">

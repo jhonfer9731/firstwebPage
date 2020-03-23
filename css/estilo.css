@@ -168,17 +168,28 @@ header li{
 	border-radius: 15%;
 }
 
-#botonIniciarSesion, #btn_registro{
-	padding: 7px 10px;
-	position: relative;
-	left: 12%;
+
+
+#botonIniciarSesion, #btn_registro,.button_registro,#botonCerrarSesion {
+	
 	background-color: #E65570;
 	border-radius: 10%;
 	color: #faebdb;
 }
 
+#botonIniciarSesion, #btn_registro,#botonCerrarSesion{
+	position: relative;
+	left: 12%;
+	padding: 7px 10px;
+}
 
-header li:hover, aside .empresa a:hover, #botonIniciarSesion:hover, #btn_registro:hover, #btn_registro2:hover, #login_submit:hover, #cerrarLogIn:hover,#btn_cancelarLog:hover {
+.button_registro{
+	margin: 2px 47%;
+	padding: 10px 15px;
+}
+
+
+header li:hover, aside .empresa a:hover,#botonCerrarSesion:hover, #botonIniciarSesion:hover, #btn_registro:hover, #btn_registro2:hover, #login_submit:hover, #cerrarLogIn:hover,#btn_cancelarLog:hover, .button_registro:hover {
 	color: #E65570;
 	transform: scale(1.15,1.15);
 	background-color: #faebdb;

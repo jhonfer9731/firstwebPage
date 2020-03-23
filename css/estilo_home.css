@@ -37,4 +37,14 @@
 #salonesDisp{
     width: 70%;
     margin:0% 15%;
+    border: solid #faebdb 1px;
+    border-collapse: separate;
+    border-spacing: 0;
+     
+}
+
+#salonesDisp, #salonesDisp th,#salonesDisp td{
+    border: 1px solid #b38a69d0;
+    background-color: #b38a695d;
+    text-align: center;
 }

@@ -1,3 +1,6 @@
+<?php
+session_start();
+  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +28,7 @@
       <!-- Ventana de registro -->
       <div id="LogIn" class="modulo">
         <!--Contenido del formulario de registro y sesion -->
-        <form method="POST" action="controladores/sesion.php" class="animate_LogIn">
+        <form method="POST" action="controladores/sesion.php" class="animate_LogIn" id="animate_LogIn">
           <div id="btn_container">
             <button onclick="document.getElementById('LogIn').style.display = 'none'" tittle="CerrarLogIn" id="cerrarLogIn">Cerrar</button>
           <div class="clear"></div>
@@ -34,7 +37,7 @@
             <div class="marcalog">
               <h1 id="marca_LogIn"><b>Lecker</b></h1><h1>Restaurante y repostería</h1><h2 style="margin: 0px auto;">Bienvenido</h2>
             </div>
-            <label id="label_correo_login">Correo</label>
+            <label id="label_correo_login">Nombre de Usuario</label>
             <input type="text" name="user" required> 
             <label id="label_contraseña_login">Contraseña</label><br>  
             <input type="password" name="pass" required>
@@ -44,7 +47,7 @@
             <label id="label_contraseña_crear_cuenta">¿Aún no tiene una cuenta?  Regístrese ahora mismo</label>
             <br>
             <div id="cont_btn_registro">
-              <a id="btn_registro2" href="#registro" onclick="document.getElementById('LogIn').style.display = 'none'">Registrarse</a>
+              <a id="btn_registro2" href="index.php/#registro" onclick="document.getElementById('LogIn').style.display = 'none'">Registrarse</a>
             </div>
             <?php
             if(isset($_GET['error']) && $_GET['error']==true){ // sesion.php manda true cuando no encuentra al usuario y contraseña
@@ -71,8 +74,22 @@
           <li><a href="#Eventos">Eventos</a></li>
           <li><a href="#contacto">Contacto</a></li>
           <li><a href="#footer">ACERCA DE</a></li>
-              <button onclick="document.getElementById('LogIn').style.display ='block'" id="botonIniciarSesion">Login</button>
-              <a id="btn_registro" href="#registro">Registrarse</a>
+          <button id="botonCerrarSesion">Cerrar Sesion</button>
+          <button  onclick="document.getElementById('LogIn').style.display ='inline-block'" id="botonIniciarSesion">Login</button>
+          <a id="btn_registro" href="#registro">Registrarse</a>
+          <?php if((isset($_COOKIE['sesion_abierta']) && $_COOKIE['sesion_abierta']==true)){?>
+                <script>document.getElementById('botonCerrarSesion').style ='display : inline-block;'</script>
+                <script>document.getElementById('botonIniciarSesion').style ='display : none;'</script>
+                <script>document.getElementById('btn_registro').style ='display : none;'</script>
+          <?php
+          }
+          else{ 
+          ?>
+            <script>document.getElementById('botonCerrarSesion').style ='display : none;'</script>
+            <script>document.getElementById('botonIniciarSesion').style ='display : inline-block;'</script>
+            <script>document.getElementById('btn_registro').style ='display : inline-block;'</script>
+          <?php
+          }?>
         </ul>
       </nav>
     </div>
@@ -227,7 +244,7 @@
               <span class="info gris">Por evento</span>
             </li>
             <li class="gris-opaco">
-              <button class="button">Seleccionar</button>
+              <button id="laCaira" class="button">Seleccionar</button>
             </li>
           </ul>
         
@@ -243,7 +260,7 @@
               <span class="info gris">Por evento</span>
           </li>
             <li class="gris-opaco">
-              <button class="button">Seleccionar</button>
+              <button id="petret" class="button">Seleccionar</button>
             </li>
           </ul>        
       <!-- Bloque Precio 3 -->
@@ -258,7 +275,7 @@
               <span class="info gris">Por evento</span>
             </li>
             <li class="gris-opaco">
-              <button class="button">Seleccionar</button>
+              <button id="esplendit" class="button">Seleccionar</button>
             </li>
           </ul>
           <div class="clear"></div>
@@ -269,19 +286,31 @@
 
       <h4 id="registro"><b>Registro</b></h4>
  
-      <form action="../action_page_2.php" target="_blank">
+      <form action="registro.php" method = "POST" onSubmit="return checkInfo()" id="formRegistro" >
         <div class="texto">
-          <label>Nombre</label>
-          <input class="input" type="text" name="Name" required>
+          <label>Nombre de Usuario: </label>
+          <input class="input" maxlength="20" type="text" onkeypress="return /^[a-z0-9._-]*$/i.test(event.key)" name="nombre_registro"  required>
         </div>
-
         <div class="texto">
+            <label>Id(solo numeros): </label>
+            <input class="input"  min="0" max="9999999999" type="number" name="id_registro" placeholder="Ingrese Aquí" required>
+        </div>
+        <div class="texto">
+            <label>Contraseña: </label>
+            <input class="input" maxlength="20" pattern=".{5,}" type="password" placeholder="Debe contener 5 o mas caracteres" name="contras" required>
+        </div>
+        <div class="texto">
+            <label>Repetir contraseña: </label>
+            <input class="input" maxlength="20" pattern=".{5,}" type="password" placeholder="Debe contener 5 o mas caracteres" name="contras2" required>
+        </div>
+ 
+        <!--div class="texto">
             <label>Apellido</label>
             <input class="input" type="text" name="Name" required>
         </div>
         <div class="texto">
             <label>Id</label>
-            <input class="input" type="number" name="Id" required>
+            <input class="input" type="number" name="Id " required>
         </div>
 
         <div class="texto">
@@ -292,18 +321,15 @@
             <label>Télefono</label>
             <input class="input" type="number" name="Telefono" required>
         </div>
-        <div class="texto">
-            <label>Contraseña</label>
-            <input class="input" type="password" name="Pass1" required>
-        </div>
+        
 
         <div class="texto">
             <label>Repita la contraseña</label>
             <input class="input" type="password" name="Pass2" required>
-        </div>
+        </div-->
 
        
-      <button type="submit" class="button_registro"><i class="icono-registrar"></i>Registrar</button>   
+      <button type="submit" id="btnRegistroUser" class="button_registro">Registrar</button>   
     </form>
     </div>
   <!-- Contact Section -->
@@ -313,6 +339,7 @@
       <div class="grupo-item">
         <p><img src="../imagenes/envelope.png"></p>
         <p>jfernando.benavides@udea.edu.co</p>
+        <p>alexis.patino@udea.edu.co</p>
       </div>
       <div class="grupo-item">
         <p><img src="../imagenes/location.png"></p>
