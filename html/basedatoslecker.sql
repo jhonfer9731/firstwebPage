@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2019 at 04:04 AM
+-- Generation Time: Oct 19, 2019 at 02:48 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -54,8 +54,9 @@ CREATE TABLE `reservassalones` (
   `Lugar` varchar(50) NOT NULL,
   `Dia` varchar(3) NOT NULL,
   `Mes` varchar(3) NOT NULL,
-  `Año` varchar(4) NOT NULL,
+  `Ano` varchar(4) NOT NULL,
   `hora` varchar(11) NOT NULL,
+  `Usuario` varchar(30) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -63,8 +64,8 @@ CREATE TABLE `reservassalones` (
 -- Dumping data for table `reservassalones`
 --
 
---INSERT INTO `reservassalones` (`Lugar`, `Dia`, `Mes`, `Año`, `hora`, `id`) VALUES
---('0', '0', '0', '0', '0', 1);
+INSERT INTO `reservassalones` (`Lugar`, `Dia`, `Mes`, `Ano`, `hora`, `Usuario`, `id`) VALUES
+('La Caira', '1', '5', '2019', '9', 'jhonfer97', 1);
 
 -- --------------------------------------------------------
 
@@ -75,17 +76,21 @@ CREATE TABLE `reservassalones` (
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `name` varchar(20) DEFAULT NULL,
-  `pass` varchar(20) DEFAULT NULL
+  `pass` varchar(20) DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `name`, `pass`) VALUES
-(1, 'juan', '123456'),
-(2, 'luis', '123456'),
-(3, 'sebas', '123456');
+INSERT INTO `usuarios` (`id`, `name`, `pass`, `admin`) VALUES
+(1, 'juanRojas', '12317', 1),
+(2, 'luis', '123456', 0),
+(3, 'sebas', '123456', 0),
+(121231, 'jhon34', '1234a', 0),
+(1296343, 'CarlosRodri', 'dell1', 0),
+(1085338673, 'jhonfer97', 'jhon34', 0);
 
 --
 -- Indexes for dumped tables
@@ -123,13 +128,13 @@ ALTER TABLE `productos_salones`
 -- AUTO_INCREMENT for table `reservassalones`
 --
 ALTER TABLE `reservassalones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1085338674;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

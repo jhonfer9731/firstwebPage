@@ -170,14 +170,14 @@ header li{
 
 
 
-#botonIniciarSesion, #btn_registro,.button_registro,#botonCerrarSesion {
+#botonIniciarSesion, #btn_registro,.button_registro,#botonCerrarSesion,#botonReservarUser,#botonReservarAdmin {
 	
 	background-color: #E65570;
 	border-radius: 10%;
 	color: #faebdb;
 }
 
-#botonIniciarSesion, #btn_registro,#botonCerrarSesion{
+#botonIniciarSesion, #btn_registro,#botonCerrarSesion,#botonReservarUser,#botonReservarAdmin{
 	position: relative;
 	left: 12%;
 	padding: 7px 10px;
@@ -189,7 +189,7 @@ header li{
 }
 
 
-header li:hover, aside .empresa a:hover,#botonCerrarSesion:hover, #botonIniciarSesion:hover, #btn_registro:hover, #btn_registro2:hover, #login_submit:hover, #cerrarLogIn:hover,#btn_cancelarLog:hover, .button_registro:hover {
+header li:hover, aside .empresa a:hover,#botonReservarUseAdmin:hover, #botonReservarAdmin:hover,#botonReservarUser:hover,#botonCerrarSesion:hover, #botonIniciarSesion:hover, #btn_registro:hover, #btn_registro2:hover, #login_submit:hover, #cerrarLogIn:hover,#btn_cancelarLog:hover, .button_registro:hover {
 	color: #E65570;
 	transform: scale(1.15,1.15);
 	background-color: #faebdb;

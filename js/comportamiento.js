@@ -25,10 +25,17 @@ window.onload = function(){
      }
      var botonCerrarSesion = document.getElementById("botonCerrarSesion");
      botonCerrarSesion.onclick = cerrarSesion;
+     var botonReservaAdmin = document.getElementById("botonReservaAdmin");
+     //botonReservaAdmin.onclick = reservaAdmin;
+     var botonReservaUser = document.getElementById("botonReservaUser");
+     //botonReservaUser.onclick = ReservaUser;
+
+     
 };
 function cerrarSesion(){
     window.location.href = "controladores/cerrarSesion.php";
 }
+
 
 function teclaEnter(event){
     if(event.keyCode == 13){

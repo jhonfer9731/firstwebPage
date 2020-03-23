@@ -61,17 +61,15 @@
       <h2>Diseñado por: Jhon Fernando Benavides Bastidas y Santiago Alexis Patiño</h2>
       <nav>
         <ul>
-          <li><a href="index.php#">Inicio</a></li>
+          <li><a href="index.php">Inicio</a></li>
           <li><a href="index.php#contenedor_precios">Precios</a></li>
           <li><a href="index.php#habilidades">Habilidades</a></li>
           <li><a href="index.php#Eventos">Eventos</a></li>
           <li><a href="index.php#contacto">Contacto</a></li>
           <li><a href="index.php#footer">ACERCA DE</a></li>
-              <button id="botonCerrarSesion">Cerrar Sesion</button>
-              <script>document.getElementById('botonCerrarSesion').onclick = function(){window.location.href = 'controladores/cerrarSesion.php';}</script>
+          <button id="botonCerrarSesion">Cerrar Sesion</button>
+            <script>document.getElementById('botonCerrarSesion').onclick = function(){window.location.href = 'controladores/cerrarSesion.php';}</script>
         
-             
-            
         </ul>
       </nav>
     </div>
@@ -80,28 +78,37 @@
     <h2 class="Titulo1User">Bienvenido <?php echo $_SESSION['user']?></h2>
     <div class="container2">
       <article class="card">
-        <h2 class="Titulo1User">Salones disponibles: </h2>
+        <h2 class="Titulo1User">Salones reservados: </h2>
         <table id="salonesDisp">
             <?php
               $mysql = conexionBaseDatos();  // funcion definida en conexion.php
-              $consulta = "SELECT * FROM productos_salones";
+              $consulta = "SELECT * FROM reservassalones";
               if($salones = $mysql->query($consulta)){
                 if(mysqli_num_rows($salones)!=0){
+
+                    echo "<tr>";
+                    echo "<td>".'Lugar'."</td>";
+                    echo "<td>".'Dia'."</td>";
+                    echo "<td>".'Mes'."</td>";
+                    echo "<td>".'Año'."</td>";
+                    echo "<td>".'Hora (24h)'."</td>";
+                    echo "<td>".'Nombre del Usuario'."</td>";
+                   echo "</tr>";
+                  
                   foreach ($salones as $key => $salon){
                     echo "<tr>";
-                    echo "<td>".$salon['id']."</td>";
-                    echo "<td>".$salon['nombre']."</td>";
-                    echo "<td>".$salon['Precio']."</td>";
-                    echo "<td align = 'center'><img src='".$salon['imagen']."' width = 300></td>";
-                    echo "<td align = 'center'><form method='GET' action='seleccionFecha.php'>";
-                    echo "<button name='reservarSalon' id='btn_reservar'><a id='enlace_res' href='seleccionFecha.php?salon_id=".$salon['id']."&salon_nombre=".$salon['nombre']."'>Reservar</a></button>";
-                    //echo "<input type='submit' name='salon' value='".$salon['id']."'>Reservar</input></form></td>";
-                    echo "</tr>";
+                    echo "<td>".$salon['Lugar']."</td>";
+                    echo "<td>".$salon['Dia']."</td>";
+                    echo "<td>".$salon['Mes']."</td>";
+                    echo "<td>".$salon['Ano']."</td>";
+                    echo "<td>".$salon['hora'].":00</td>";
+                    echo "<td>".$salon['Usuario']."</td>";
+                   echo "</tr>";
                   }
                 }
                 else
                 {
-                  echo "<h1> No hay salones en la base de datos </h1>";
+                  echo "<h1> No hay reservas realizadas </h1>";
                 }
               terminarConexion($mysql);
               }
@@ -121,7 +128,7 @@
       <p>Todos los derechos reservados © </p>
       <p>Medellin<br>2019</p>
       <ul>
-        <li><a href="index.php#">Inicio</a></li>
+        <li><a href="index.php">Inicio</a></li>
         <li>|</li>
         <li><a href="index.php#contenedor_precios">Precios</a></li>
         <li>|</li>

@@ -30,7 +30,9 @@ session_start();
         <!--Contenido del formulario de registro y sesion -->
         <form method="POST" action="controladores/sesion.php" class="animate_LogIn" id="animate_LogIn">
           <div id="btn_container">
+          
             <button onclick="document.getElementById('LogIn').style.display = 'none'" tittle="CerrarLogIn" id="cerrarLogIn">Cerrar</button>
+            
           <div class="clear"></div>
           </div>
           <div id=content_LogIn>
@@ -47,7 +49,7 @@ session_start();
             <label id="label_contraseña_crear_cuenta">¿Aún no tiene una cuenta?  Regístrese ahora mismo</label>
             <br>
             <div id="cont_btn_registro">
-              <a id="btn_registro2" href="index.php/#registro" onclick="document.getElementById('LogIn').style.display = 'none'">Registrarse</a>
+              <a id="btn_registro2" href="index.php#registro" onclick="document.getElementById('LogIn').style.display = 'none'">Registrarse</a>
             </div>
             <?php
             if(isset($_GET['error']) && $_GET['error']==true){ // sesion.php manda true cuando no encuentra al usuario y contraseña
@@ -74,18 +76,38 @@ session_start();
           <li><a href="#Eventos">Eventos</a></li>
           <li><a href="#contacto">Contacto</a></li>
           <li><a href="#footer">ACERCA DE</a></li>
-          <button id="botonCerrarSesion">Cerrar Sesion</button>
+          <button id="botonCerrarSesion" >Cerrar Sesion</button>
+          <a href="admin.php"><button id="botonReservarAdmin">Reservas Realizadas</button></a>
+          <a href="home.php"><button id="botonReservarUser">Reserva User</button></a>
+
           <button  onclick="document.getElementById('LogIn').style.display ='inline-block'" id="botonIniciarSesion">Login</button>
           <a id="btn_registro" href="#registro">Registrarse</a>
           <?php if((isset($_COOKIE['sesion_abierta']) && $_COOKIE['sesion_abierta']==true)){?>
+               
+            <?php if((isset($_COOKIE['sesion_admin']) && $_COOKIE['sesion_admin']==true)){?>
+                <script>document.getElementById('botonReservarUser').style ='display : none;'</script>
                 <script>document.getElementById('botonCerrarSesion').style ='display : inline-block;'</script>
+                <script>document.getElementById('botonReservarAdmin').style ='display : inline-block;'</script>
                 <script>document.getElementById('botonIniciarSesion').style ='display : none;'</script>
                 <script>document.getElementById('btn_registro').style ='display : none;'</script>
+            <?php
+            }elseif((isset($_COOKIE['sesion_user']) && $_COOKIE['sesion_user']==true)){?>
+
+             <script>document.getElementById('botonReservarUser').style ='display : inline-block;'</script>
+              <script>document.getElementById('botonCerrarSesion').style ='display : inline-block;'</script>
+                <script>document.getElementById('botonReservarAdmin').style ='display : none;'</script>
+                <script>document.getElementById('botonIniciarSesion').style ='display : none;'</script>
+                <script>document.getElementById('btn_registro').style ='display : none;'</script>
+              
           <?php
-          }
+          }}
           else{ 
+            
           ?>
+
             <script>document.getElementById('botonCerrarSesion').style ='display : none;'</script>
+            <script>document.getElementById('botonReservarAdmin').style ='display : none;'</script>
+            <script>document.getElementById('botonReservarUser').style ='display : none;'</script>
             <script>document.getElementById('botonIniciarSesion').style ='display : inline-block;'</script>
             <script>document.getElementById('btn_registro').style ='display : inline-block;'</script>
           <?php
@@ -321,8 +343,6 @@ session_start();
             <label>Télefono</label>
             <input class="input" type="number" name="Telefono" required>
         </div>
-        
-
         <div class="texto">
             <label>Repita la contraseña</label>
             <input class="input" type="password" name="Pass2" required>
