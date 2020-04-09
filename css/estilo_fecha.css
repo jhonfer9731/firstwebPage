@@ -1,0 +1,28 @@
+.card #container_fecha{
+    width: 100%;
+    text-align: center;    
+}
+
+.Titulo1User{
+    text-align: center;
+}
+
+.card #container_fecha *{
+    margin-left: 8px;
+    padding: 10px 5px;
+}
+
+label{
+    font-size: 1.2em;
+}
+.card form #btn_confirmar{
+    background-color: #E65570;
+    padding:5px 7px;
+    color: #faebdb;
+}
+
+
+.card{
+    height: 100px;
+}
+
